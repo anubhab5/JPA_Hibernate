@@ -46,4 +46,10 @@ public class CourseController {
 			@RequestParam(name="price") double price){
 		return cRepo.getAllCoursesWhereQuery(name, price);
 	}
+	
+	@GetMapping("/getAllCoursesBetween")
+	public List<Course> getAllCoursesBetween(@RequestParam(name="lowerBound") double lowerBound,
+			@RequestParam(name="upperBound") double upperBound){
+		return cRepo.getAllCoursesWhereQuery2(lowerBound, upperBound);
+	}
 }

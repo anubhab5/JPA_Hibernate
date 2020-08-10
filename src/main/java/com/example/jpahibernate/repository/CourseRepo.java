@@ -37,9 +37,25 @@ public class CourseRepo {
 		return resultList.getResultList();
 	}
 
+	/* 
+	 * 
+	 * 
+	 */
 	public List<Course> getAllCoursesWhereQuery(String str, double price) {
 		TypedQuery<Course> query = em.createQuery("select c from Course c where name like :str and price=:price",
 				Course.class);
 		return query.setParameter("str", "%" + str + "%").setParameter("price", price).getResultList();
+	}
+
+	/* 
+	 * 
+	 * 
+	 */
+	public List<Course> getAllCoursesWhereQuery2(double lowerBound, double upperBound) {
+		TypedQuery<Course> query = em.createQuery(
+				"select c from Course c where price between :lowerBound and :upperBound",
+				Course.class);
+		return query.setParameter("lowerBound", lowerBound)
+				.setParameter("upperBound", upperBound).getResultList();
 	}
 }
