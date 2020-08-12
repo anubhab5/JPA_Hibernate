@@ -2,6 +2,7 @@ package com.example.jpahibernate.repository;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -52,10 +53,13 @@ public class CourseRepo {
 	 * 
 	 */
 	public List<Course> getAllCoursesWhereQuery2(double lowerBound, double upperBound) {
-		TypedQuery<Course> query = em.createQuery(
-				"select c from Course c where price between :lowerBound and :upperBound",
-				Course.class);
-		return query.setParameter("lowerBound", lowerBound)
-				.setParameter("upperBound", upperBound).getResultList();
+		TypedQuery<Course> query = em
+				.createQuery("select c from Course c where price between :lowerBound and :upperBound", Course.class);
+		return query.setParameter("lowerBound", lowerBound).setParameter("upperBound", upperBound).getResultList();
+	}
+
+	public List<Course> getAllCoursesUsingNamedQuery() {
+		TypedQuery<Course> query = em.createNamedQuery("query_get_all_courses", Course.class);
+		return query.getResultList();
 	}
 }

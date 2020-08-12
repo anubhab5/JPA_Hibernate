@@ -1,32 +1,33 @@
 package com.example.jpahibernate.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+@NamedQuery(name = "query_get_all_courses", query = "select c from Course c")
 public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private double price;
-	
+
 	private String currency;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime lastUpdatedDate;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 

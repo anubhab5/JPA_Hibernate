@@ -52,4 +52,9 @@ public class CourseController {
 			@RequestParam(name="upperBound") double upperBound){
 		return cRepo.getAllCoursesWhereQuery2(lowerBound, upperBound);
 	}
+	
+	@GetMapping("/getAllCoursesNamedquery")
+	public List<Course> getAllCourseUsingNamedQuery() {
+		return cRepo.getAllCoursesUsingNamedQuery();
+	}
 }
