@@ -2,8 +2,8 @@ package com.example.jpahibernate.repository;
 
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -60,6 +60,11 @@ public class CourseRepo {
 
 	public List<Course> getAllCoursesUsingNamedQuery() {
 		TypedQuery<Course> query = em.createNamedQuery("query_get_all_courses", Course.class);
+		return query.getResultList();
+	}
+
+	public List<Course> getAllCourses_Nativequery() {
+		Query query = em.createNativeQuery("Select * from course", Course.class);
 		return query.getResultList();
 	}
 }

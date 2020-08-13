@@ -57,4 +57,9 @@ public class CourseController {
 	public List<Course> getAllCourseUsingNamedQuery() {
 		return cRepo.getAllCoursesUsingNamedQuery();
 	}
+	
+	@GetMapping("/getAllCoursesNativequery")
+	public List<Course> getAllCourse_NativeQuery() {
+		return cRepo.getAllCourses_Nativequery();
+	}
 }
